@@ -1,0 +1,15 @@
+INSERT INTO supplier (id, name, location, logo) VALUES
+  (1, 'Ray-Ban', 'London', '1_rayban.jpg'),
+  (2, 'Foot Locker', 'Manchester', '2_footlocker.png'),
+  (3, 'City Bike','Liverpool', '3_citybike.jpg'),
+  (4, 'Nike', 'London', '4_nike.png'),
+  (5, 'Samuel Widsow', 'Northampton', '5_s_windsor.png'),
+  (6, 'carhartt', 'London', '6_carhartt.jpg');
+
+INSERT INTO item (id, name, image, url, category) VALUES
+   (1, 'Ray-Ban Originals', 'rayban1.jpg', 'https://www.ray-ban.com/uk/sunglasses/RB2186%20UNISEX%20013-state%20street-black/8056597177603?category_Id=1911865', 2),
+   (2, 'Nike Air Max 90', 'nike_airmax_90.jpg', 'https://www.ray-ban.com/uk/sunglasses/RB2186%20UNISEX%20013-state%20street-black/8056597177603?category_Id=1911865', 7),
+   (3, 'Carhartt WIP Trent Parka Coat', 'carhartt_wip_trent_parker.jpg', 'https://www.johnlewis.com/carhartt-wip-trent-parka-coat-green/p5140194', 3),
+   (4, 'Nike Air Max 90', 'nike_airmax_90.jpg', 'https://www.nike.com/gb/', 7),
+   (5, 'DKNY Ladies Watch', 'dkny_watch.jpg', 'https://www.watchshop.com/watches/dkny.plp?nst=0&ds_rl=1193876&ds_rl=1241861&ds_rl=1197966&gclid=Cj0KCQiAzsz-BRCCARIsANotFgMKsZx44G4x8y9fB7RPMRESgAWu56LepSwvfZlIf2jDecXqjJzv9XYaAqklEALw_wcB&gclsrc=aw.ds', 1),
+   (6, 'Samuel Windsor Shoes', 'samuel_windsor_shoe.jpg', 'https://www.samuel-windsor.co.uk/?gclid=Cj0KCQiAzsz-BRCCARIsANotFgMg5rxo2AzTADp7Z8PzPEJ-YLkXWRx_schKx12O9V04xGVP-3zzBuMaAtsPEALw_wcB', 4);
