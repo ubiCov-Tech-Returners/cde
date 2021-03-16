@@ -7,10 +7,7 @@ package com.ubicov.app;
 import lombok.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,17 +23,18 @@ public class AppApplication {
         SpringApplication.run(AppApplication.class, args);
     }
 
-    @GetMapping("/hello")
+    @RequestMapping("/hello")
     public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+        System.out.println(name);
         return String.format("Hello %s!", name);
     }
 
     @GetMapping("/suppliers")
-    public List<Supplier> supplier() {
+    public List supplier() {
         List lst = new ArrayList<>();
-                lst.add( new Supplier(1l, "name1", "pic1") );
-                lst.add( new Supplier(2l, "name2", "pic2") );
-                lst.add( new Supplier(3l, "name3", "pic3") );
+        lst.add(new Supplier(1L, "name1", "pic1"));
+        lst.add(new Supplier(2L, "name2", "pic2"));
+        lst.add(new Supplier(3L, "name3", "pic3"));
 
         return lst;
     }
