@@ -1,4 +1,5 @@
 /**
+ * @Author - Richard Renaud
  * Hard coding dummy data to test react async calls to spring boot.
  * NB.  Remove before production release.
  */
