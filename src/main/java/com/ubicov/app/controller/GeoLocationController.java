@@ -12,6 +12,8 @@ import com.ubicov.app.util.GeoLocationNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class GeoLocationController {
 
@@ -25,6 +27,12 @@ public class GeoLocationController {
     private GeoLocation getGeoLocation(@PathVariable String district) {
         return geoLocationService.getLocByDistrict(district);
     }
+
+    @GetMapping("/loc/")
+    private List<GeoLocation> getAllGeoLocations() {
+        return geoLocationService.getAllLoc();
+    }
+
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
