@@ -14,8 +14,7 @@ related to nights out? Is low income effecting vaccination uptake. -- Same as ab
 
 ### Back End
 
-`JAVA SpringBoot JPA Restful Services
-`
+`JAVA SpringBoot JPA Restful Services`
 
 ### Front End
 
@@ -24,4 +23,10 @@ related to nights out? Is low income effecting vaccination uptake. -- Same as ab
 ### Deployment
 
 `MySql AWS S3 AWS S2 - instance`
->>>>>>> Merged multiple Repos into 1 team repo.
+
+### React Packages Installed
+
+`npm install --save react-map-gl`
+`npm install react-bootstrap bootstrap`
+`npm i react-chartjs-2 - npm version`
+> > > > > > > Merged multiple Repos into 1 team repo.
