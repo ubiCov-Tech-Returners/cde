@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class FurloughController {
 
@@ -18,6 +20,11 @@ public class FurloughController {
     @GetMapping("/furlough/{district}")
     private Furlough getFurlough(@PathVariable String district) {
         return furloughService.getFurloughByDistrictAndDate(district);
+    }
+
+    @GetMapping("/furlough/")
+    private List<Furlough> getAllFurlough() {
+        return furloughService.getAllFurlough();
     }
 
 }
