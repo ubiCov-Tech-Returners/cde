@@ -4,11 +4,20 @@ Covid Data and Exploration
 =======
 # ubiCov
 
-Brief
+#Brief
+Create a web app that enables users to explore the relationship between Covid-19 cases and socio economic factors
+https://classroom.google.com/c/NTg1MTgxODU0Mjda/m/Mjk3NzI0MzQxMzUx/details
+#Questions
+Is the uptake of covid vaccinations impacted in areas with lower income? 
+Have covid cases fallen enough to safely reopen my business? How has Covid-19 affected businesses in your area? 
+Is the spread of covid-19 in your area related to nights out? Is low income effecting vaccination uptake. 
+MVP will cover boroughs of London.
+#Future releases  
+- drilling into borough level data
+- zooming out to larger regions
+- automation of data extraction from sources
+- autodetect viewers region to default map display
 
-Questions Is the uptake of covid vaccinaions impacted in areas with lower income? Have covid cases fallen enough to
-safely reopen my business? How has Covid-19 affected businesses in your are? Is the spread of covid-19 in your area
-related to nights out? Is low income effecting vaccination uptake. -- Same as above --
 
 ## Tech Stack
 
@@ -52,6 +61,7 @@ Title:	COVID-19 Vaccinations By Lower Tier Local Authority (LTLA) of Residence a
 ####SocioEconomic - Income Deprivation Yearly
 look at Overview tab for available fields
 https://data-communities.opendata.arcgis.com/datasets/indices-of-multiple-deprivation-imd-2019-1
+look at API Explorer tab for building query 
 query for Income Deprivation By Lower Tier Local Authority (LTLA)
 https://services3.arcgis.com/ivmBBrHfQfDnDf8Q/arcgis/rest/services/Indices_of_Multiple_Deprivation_(IMD)_2019/FeatureServer/0/query?where=1%3D1&outFields=LADcd,LADnm,IncScore,IncRank,IncDec&outSR=4326&f=json
 
