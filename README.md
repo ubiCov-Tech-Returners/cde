@@ -19,6 +19,7 @@ MVP will cover boroughs of London.
 - autodetect viewers region to default map display
 
 
+
 ## Tech Stack
 
 ### Back End
@@ -39,9 +40,13 @@ MVP will cover boroughs of London.
 `npm install react-bootstrap bootstrap`
 `npm i react-chartjs-2 - npm version`
 > > > > > > > Merged multiple Repos into 1 team repo.
-> 
-> ### Data Sources and Frequency - MVP will cover boroughs of London 
+>
 
+#Future tech stack
+Spring Cloud or Micronaut 
+AWS Lamda
+
+ ### Data Sources and Frequency - MVP will cover boroughs of London 
 
 ####Covid - Cases Daily
 https://coronavirus.data.gov.uk/details/download  chose AreaType  Lower Tier Local Authority Choose Metrics cumCasesByPublishDate
@@ -58,7 +63,17 @@ https://www.england.nhs.uk/statistics/statistical-work-areas/covid-19-vaccinatio
 Title:	COVID-19 Vaccinations By Lower Tier Local Authority (LTLA) of Residence and Age Group								
 
 
-####SocioEconomic - Income Deprivation Yearly
+####SocioEconomic - Income Deprivation Every 3-4 years latest 2019
+London Data
+https://data.london.gov.uk/dataset/indices-of-deprivation
+csv - Look for tab Borough IDACI IDAOPI
+https://data.london.gov.uk/download/indices-of-deprivation/9ee0cf66-e6f9-4e38-8eec-79c1d897e248/ID%202019%20for%20London.xlsx
+
+National Data by Lower Tier Local Authority (LTLA)
+https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835115/IoD2019_Statistical_Release.pdf
+https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019 Look at File 10: local authority district summaries
+
+Further - Deprivation GeoSpatial data
 look at Overview tab for available fields
 https://data-communities.opendata.arcgis.com/datasets/indices-of-multiple-deprivation-imd-2019-1
 look at API Explorer tab for building query 
@@ -71,3 +86,6 @@ Monthly csv file - available from website.
 Look at tab 1a. Local Authority Cuml. 
 Look at tab 11. Local Authority and gender
 Furlough per Business data source - Richard to update
+
+#Other Sources to Research
+https://data.london.gov.uk/dataset/socio-economic-impact-of-covid-19
