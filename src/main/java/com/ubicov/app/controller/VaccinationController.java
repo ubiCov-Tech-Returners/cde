@@ -23,7 +23,10 @@ public class VaccinationController {
     private Vaccination getVaccinationByDistrictAndDate(@PathVariable String district, @PathVariable String date) {
         return vaccinationService.getVaccinationByDistrictAndDate(district, date);
     }
-
+    @GetMapping("/vaccination/{district}/")
+    private Vaccination getVaccinationByDistrict(@PathVariable String district) {
+        return vaccinationService.getVaccinationByDistrict(district);
+    }
     @GetMapping("/vaccination/")
     private List<Vaccination> findAll() {
         return vaccinationService.getAllVaccinations();
