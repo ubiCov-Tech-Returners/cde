@@ -62,30 +62,35 @@ https://www.england.nhs.uk/statistics/statistical-work-areas/covid-19-vaccinatio
 ***Fields used from LTLA tab in weekly csv file - available from website.
 Title:	COVID-19 Vaccinations By Lower Tier Local Authority (LTLA) of Residence and Age Group								
 
+####SocioEconomic - Furlough Monthly
+https://www.gov.uk/government/statistics/coronavirus-job-retention-scheme-statistics-march-2021
+Monthly csv file - available from website.
+Look at tab 1a. Local Authority Cuml.
+Look at tab 11. Local Authority and gender
+######Furlough per Business data source - Richard to update
 
 ####SocioEconomic - Income Deprivation Every 3-4 years latest 2019
 London Data
 https://data.london.gov.uk/dataset/indices-of-deprivation
+
 csv - Look for tab Borough IDACI IDAOPI
 https://data.london.gov.uk/download/indices-of-deprivation/9ee0cf66-e6f9-4e38-8eec-79c1d897e248/ID%202019%20for%20London.xlsx
 
 National Data by Lower Tier Local Authority (LTLA)
 https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835115/IoD2019_Statistical_Release.pdf
-https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019 Look at File 10: local authority district summaries
+
+csv- Look at File 10: local authority district summaries
+https://www.gov.uk/government/statistics/english-indices-of-deprivation-2019 
 
 Further - Deprivation GeoSpatial data
 look at Overview tab for available fields
 https://data-communities.opendata.arcgis.com/datasets/indices-of-multiple-deprivation-imd-2019-1
+
 look at API Explorer tab for building query 
 query for Income Deprivation By Lower Tier Local Authority (LTLA)
 https://services3.arcgis.com/ivmBBrHfQfDnDf8Q/arcgis/rest/services/Indices_of_Multiple_Deprivation_(IMD)_2019/FeatureServer/0/query?where=1%3D1&outFields=LADcd,LADnm,IncScore,IncRank,IncDec&outSR=4326&f=json
 
-####SocioEconomic - Furlough Monthly
-https://www.gov.uk/government/statistics/coronavirus-job-retention-scheme-statistics-march-2021
-Monthly csv file - available from website.
-Look at tab 1a. Local Authority Cuml. 
-Look at tab 11. Local Authority and gender
-Furlough per Business data source - Richard to update
+
 
 #Other Sources to Research
 https://data.london.gov.uk/dataset/socio-economic-impact-of-covid-19
