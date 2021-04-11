@@ -1,3 +1,15 @@
+/**
+ * @Author - Richard Renaud
+ * Very light weight thin test.  This test needs to be expanded depending on
+ * service functionality.  Here we are only testing the fetch as this set of data
+ * has been manually captured and will NOT need to be changed.
+ * <p>
+ * n.b.  No test has been devised for location accuracy.  We assume that the
+ * co-ordinates are correct moving forward.
+ * <p>
+ * Due to time restraints the tests here are limited but what has been achieved should give
+ * a good indication on what could be done in the future.
+ */
 package com.ubicov.app.service;
 
 import com.ubicov.app.domain.Furlough;

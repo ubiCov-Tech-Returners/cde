@@ -1,3 +1,12 @@
+/**
+ * @Author - Richard Renaud, Urmila Mathew, Carmen Lara
+ * Manually inferred model of London Borough covid.
+ * This Object will be used in conjunction with OTHER DATA where the OTHER DATA does
+ * not contain Longitude / Latitude information.
+ * <p>
+ * e.g.  The OTHER DATA has been filtered by London Borough and the dataSet omits locational
+ * information.
+ */
 package com.ubicov.app.domain;
 
 import lombok.*;

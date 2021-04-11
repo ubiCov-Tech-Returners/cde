@@ -1,3 +1,7 @@
+/**
+ * @Author - Richard Renaud
+ * This Class contains all the CRUD operations for accessing geo-locations.
+ */
 package com.ubicov.app.service;
 
 import com.ubicov.app.domain.Furlough;
@@ -21,5 +25,9 @@ public class FurloughService {
 
     public List<Furlough> getAllFurlough() {
         return furloughRepository.findAll();
+    }
+
+    public Furlough getByDistrict(String district) {
+        return furloughRepository.findByDistrict(district);
     }
 }

@@ -7,6 +7,7 @@ package com.ubicov.app;
 
 import com.ubicov.app.domain.Furlough;
 import com.ubicov.app.domain.GeoLocation;
+import com.ubicov.app.util.transformer.FurloughComposite;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,12 @@ public class IntegrationTest {
 
     private List furloughList = new ArrayList<Furlough>();
 
+    private List furloughComposite = new ArrayList<FurloughComposite>();
+
     public void setUp() {
+        GeoLocation geoLoc = new GeoLocation("E09000001", "City of London", "-0.07969517196215747", "51.5196779388711");
+        Furlough furlough = new Furlough("E09000001", "City of London", LocalDate.parse("2020-12-31"), 7100, 8100, 15200);
+
         // Initialise Gelocation
         geoLocationsList.add(new GeoLocation("E09000001", "City of London", "-0.07969517196215747", "51.5196779388711"));
         geoLocationsList.add(new GeoLocation("E09000002", "Barking and Dagenham", "0.08406889679520191", "51.53197153659997"));
@@ -48,6 +54,9 @@ public class IntegrationTest {
         furloughList.add(new Furlough("E09000001", "City of London", LocalDate.parse("2021-01-31"), 7600, 8500, 16100));
         furloughList.add(new Furlough("E09000002", "Barking and Dagenham", LocalDate.parse("2021-01-31"), 8400, 8400, 16800));
         furloughList.add(new Furlough("E09000003", "Barnet", LocalDate.parse("2021-01-31"), 17000, 16000, 33000));
+
+        //Initialise furlough composite
+        furloughComposite.add(new FurloughComposite(geoLoc, furlough));
     }
 
     @Test
@@ -79,6 +88,20 @@ public class IntegrationTest {
         assertThat(response.getBody().getFemale_furloughed()).isEqualTo(7100);
         assertThat(response.getBody().getMale_furloughed()).isEqualTo(8100);
         assertThat(response.getBody().getTotal_furloughed()).isEqualTo(15200);
+    }
+
+    @Test
+    public void test_furloughComposite_integration() throws Exception {
+        // arrange
+
+        //act
+        ResponseEntity<FurloughComposite> response = restTemplate.getForEntity("/compdata/furlough/City of London", FurloughComposite.class);
+        //assert
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody().getGeoLoc().getDistrict()).isEqualTo("City of London");
+
+
+        assertThat(response.getBody().getFurlough().getDistrict()).isEqualTo("City of London");
     }
 
 }

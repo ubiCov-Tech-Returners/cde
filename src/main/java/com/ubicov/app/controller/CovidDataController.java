@@ -1,3 +1,9 @@
+/**
+ * @Author - Richard Renaud, Urmila Mathew, Carmen Lara
+ * Exposes covid endpoints and produces data in JSON format.
+ * <p>
+ * This will be used to match OTHER DATA with geo-locational information.
+ */
 package com.ubicov.app.controller;
 
 import com.ubicov.app.domain.CovidData;

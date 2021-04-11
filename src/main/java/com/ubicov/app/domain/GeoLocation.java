@@ -6,6 +6,9 @@
  * <p>
  * e.g.  The OTHER DATA has been filtered by London Borough and the dataSet omits locational
  * information.
+ *
+ * NOTE: A table join is NOT suitable in this case as too many foreign_keys will need to
+ * be added to gelocation table
  */
 package com.ubicov.app.domain;
 
