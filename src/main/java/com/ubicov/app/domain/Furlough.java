@@ -11,9 +11,7 @@ package com.ubicov.app.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -34,11 +32,9 @@ public class Furlough {
     private int female_furloughed;
     private int male_furloughed;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "lad_code_fur")
-//    @OneToOne(targetEntity = GeoLocation.class, cascade = CascadeType.ALL)
-//    @JoinColumn(name="lad_code_fk", referencedColumnName = "ladCode")
-//    private GeoLocation loc;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "ladCode", insertable = false, updatable = false)
+    private GeoLocation loc;
 
     public Furlough(String ladCode, String district, LocalDate date, int female_furloughed, int male_furloughed, int total_furloughed) {
         this.ladCode = ladCode;
