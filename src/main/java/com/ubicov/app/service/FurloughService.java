@@ -6,14 +6,21 @@ package com.ubicov.app.service;
 
 import com.ubicov.app.domain.Furlough;
 import com.ubicov.app.repository.FurloughRepository;
+import com.ubicov.app.util.geojson.GeoJsonGenerator;
+import com.ubicov.app.util.geojson.MapInfo;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FurloughService {
 
     private FurloughRepository furloughRepository;
+
+    // Generates data in GeoJson
+    private GeoJsonGenerator geoJsonGenerator;
 
     public FurloughService(FurloughRepository furloughRepository) {
         this.furloughRepository = furloughRepository;
@@ -29,5 +36,37 @@ public class FurloughService {
 
     public Furlough getByDistrict(String district) {
         return furloughRepository.findByDistrict(district);
+    }
+
+    /**
+     * Transforms Furlough Data into GeoJson Format
+     *
+     * @param district
+     * @return
+     */
+    public MapInfo getFurloughMapinfoByDistrict(String district) {
+        Furlough furlough = furloughRepository.findByDistrict(district);
+        GeoJsonGenerator generator = new GeoJsonGenerator();
+
+        return generator.getMapInfoByDistrict(getMapParams(furlough));
+    }
+
+    /**
+     * Sets the paramaters of the GeoJson fields
+     *
+     * @param furlough
+     * @return Key value pairs
+     */
+    private Map<String, String> getMapParams(Furlough furlough) {
+        Map<String, String> params = new HashMap<>();
+        params.put("district", furlough.getDistrict());
+        params.put("featureType", "FeatureCollection");
+        params.put("dataset", "furlough");
+        params.put("geoType", "Point");
+        params.put("longitude", furlough.getLoc().getLongitude());
+        params.put("latitude", furlough.getLoc().getLatitude());
+        params.put("feature", "feature");
+
+        return params;
     }
 }

@@ -9,7 +9,9 @@
  */
 package com.ubicov.app.controller;
 
+import com.ubicov.app.domain.Furlough;
 import com.ubicov.app.service.FurloughService;
+import com.ubicov.app.util.geojson.MapInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.time.LocalDate;
 
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,7 +41,7 @@ public class FurloughControllerTest {
 
     @Test
     public void getFurlough_shouldReturnFurlough() throws Exception {
-//        given(furloughService.getFurloughByDistrictAndDate(anyString())).willReturn(new Furlough("E09000001", "City of London", LocalDate.parse("2020-12-31"), 7100, 8100, 15200));
+        given(furloughService.getFurloughByDistrictAndDate(anyString())).willReturn(new Furlough("E09000001", "City of London", LocalDate.parse("2020-12-31"), 7100, 8100, 15200));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/furlough/City of London"))
                 .andExpect(status().isOk())
@@ -46,5 +50,12 @@ public class FurloughControllerTest {
                 .andExpect((ResultMatcher) jsonPath("female_furloughed").value(7100))
                 .andExpect((ResultMatcher) jsonPath("male_furloughed").value(8100))
                 .andExpect((ResultMatcher) jsonPath("total_furloughed").value(15200));
+    }
+
+    @Test
+    public void getFurloughMapinfo_shouldReturnMapInfo() throws Exception {
+        given(furloughService.getFurloughMapinfoByDistrict(anyString())).willReturn(new MapInfo());
+
+
     }
 }

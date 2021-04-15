@@ -7,7 +7,10 @@ package com.ubicov.app;
 
 import com.ubicov.app.domain.Furlough;
 import com.ubicov.app.domain.GeoLocation;
-import com.ubicov.app.util.transformer.FurloughComposite;
+import com.ubicov.app.util.geojson.Feature;
+import com.ubicov.app.util.geojson.Geometry;
+import com.ubicov.app.util.geojson.MapInfo;
+import com.ubicov.app.util.geojson.Property;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,7 +38,13 @@ public class IntegrationTest {
 
     private List furloughList = new ArrayList<Furlough>();
 
-    private List furloughComposite = new ArrayList<FurloughComposite>();
+    private List<MapInfo> mapInfos = new ArrayList<>();
+
+    private List<Geometry> geometry = new ArrayList<>();
+
+    private List<Feature> features = new ArrayList<>();
+
+    private List<Property> properties = new ArrayList<>();
 
     public void setUp() {
         GeoLocation geoLoc = new GeoLocation("E09000001", "City of London", "-0.07969517196215747", "51.5196779388711");
@@ -55,8 +65,21 @@ public class IntegrationTest {
         furloughList.add(new Furlough("E09000002", "Barking and Dagenham", LocalDate.parse("2021-01-31"), 8400, 8400, 16800));
         furloughList.add(new Furlough("E09000003", "Barnet", LocalDate.parse("2021-01-31"), 17000, 16000, 33000));
 
-        //Initialise furlough composite
-        furloughComposite.add(new FurloughComposite(geoLoc, furlough));
+        List<String> coordinates = new ArrayList<>(Arrays.asList("-76.9750541388", "38.8410857803"));
+//        Geometry g1 = new Geometry("Point", coordinates, "E09000001");
+        Geometry g1 = new Geometry("Point", coordinates);
+
+        List<String> lines = new ArrayList<>();
+        Property p1 = new Property("Southern Ave", "rail-metro", "Southern Ave", "url", lines, "address1");
+
+        Feature f1 = new Feature(g1, "Feature", p1);
+        Feature f2 = new Feature(g1, "Feature", p1);
+
+        features.add(f1);
+        features.add(f2);
+
+        MapInfo mInfo = new MapInfo("FeatureCollection", features);
+
     }
 
     @Test
@@ -91,17 +114,14 @@ public class IntegrationTest {
     }
 
     @Test
-    public void test_furloughComposite_integration() throws Exception {
+    public void test_MapInfo_integration() throws Exception {
         // arrange
 
         //act
-        ResponseEntity<FurloughComposite> response = restTemplate.getForEntity("/compdata/furlough/City of London", FurloughComposite.class);
+        ResponseEntity<MapInfo> response = restTemplate.getForEntity("/mapinfo/furlough/City of London", MapInfo.class);
         //assert
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody().getGeoLoc().getDistrict()).isEqualTo("City of London");
 
-
-        assertThat(response.getBody().getFurlough().getDistrict()).isEqualTo("City of London");
+        //TODO - tested with postman.  Need to add some assertions
     }
-
 }
