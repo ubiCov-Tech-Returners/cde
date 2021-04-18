@@ -1,10 +1,17 @@
+/**
+ * @Author - Richard Renaud, Urmila Mathew
+ * Manually inferred model of London Borough vaccination.
+ * This Object will be used in conjunction with OTHER DATA where the OTHER DATA does
+ * not contain Longitude / Latitude information.
+ * <p>
+ * e.g.  The OTHER DATA has been filtered by London Borough and the dataSet omits locational
+ * information.
+ */
 package com.ubicov.app.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -28,6 +35,10 @@ public class Vaccination {
     private int age75To79;
     private int ageOver80;
     private LocalDate date;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "ladCode", insertable = false, updatable = false)
+    private GeoLocation loc;
 
     public Vaccination(String ladCode, String district, int ageUnder50, int age50To54,
                        int age60To64, int age65To69, int age70To74, int age75To79, int ageOver80, LocalDate date) {

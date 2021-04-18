@@ -1,3 +1,9 @@
+/**
+ * @Author - Richard Renaud, Urmila Mathew
+ * Exposes vaccination endpoints and produces data in JSON format.
+ * <p>
+ * This will be used to match OTHER DATA with geo-locational information.
+ */
 package com.ubicov.app.controller;
 
 

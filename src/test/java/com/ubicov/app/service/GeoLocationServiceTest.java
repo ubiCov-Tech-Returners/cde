@@ -4,7 +4,7 @@
  * service functionality.  Here we are only testing the fetch as this set of data
  * has been manually captured and will NOT need to be changed.
  * <p>
- * n.b.  No test has been deviced for location accuracy.  We assume that the
+ * n.b.  No test has been devised for location accuracy.  We assume that the
  * co-ordinates are correct moving forward.
  * <p>
  * Due to time restraints the tests here are limited but what has been achieved should give

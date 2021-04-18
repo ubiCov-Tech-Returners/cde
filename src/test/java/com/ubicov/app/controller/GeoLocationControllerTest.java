@@ -43,8 +43,8 @@ public class GeoLocationControllerTest {
                 .andExpect(status().isOk())
                 .andExpect((ResultMatcher) jsonPath("district").value("City of London"))
                 .andExpect(jsonPath("ladCode").value("E09000001"))
-                .andExpect(jsonPath("longitude").value((long) 0.097541274))
-                .andExpect(jsonPath("latitude").value((long) 51.51415067));
+                .andExpect(jsonPath("longitude").value("-0.07969517196215747"))
+                .andExpect(jsonPath("latitude").value("51.5196779388711"));
     }
 
     @Test

@@ -1,3 +1,7 @@
+/**
+ * @Author - Richard Renaud, Urmila Mathew, Carmen Lara
+ * This Class contains all the CRUD operations for accessing geo-locations.
+ */
 package com.ubicov.app.service;
 
 import com.ubicov.app.domain.CovidData;

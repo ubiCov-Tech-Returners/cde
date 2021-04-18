@@ -1,7 +1,14 @@
+/**
+ * @Author - Richard Renaud
+ * Exposes furlough endpoints and produces data in JSON format.
+ * <p>
+ * This will be used to match OTHER DATA with geo-locational information.
+ */
 package com.ubicov.app.controller;
 
 import com.ubicov.app.domain.Furlough;
 import com.ubicov.app.service.FurloughService;
+import com.ubicov.app.util.geojson.MapInfo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +32,11 @@ public class FurloughController {
     @GetMapping("/furlough/")
     private List<Furlough> getAllFurlough() {
         return furloughService.getAllFurlough();
+    }
+
+    @GetMapping("/mapinfo/furlough/{district}")
+    private MapInfo getFurloughMapinfoByDistrict(@PathVariable String district) {
+        return furloughService.getFurloughMapinfoByDistrict(district);
     }
 
 }
