@@ -2,9 +2,7 @@ package com.ubicov.app.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -19,11 +17,13 @@ public class Deprivation {
     private Long id;
     private String ladCode;
     private String district;
-    //IDACI - Average rank
     private double incDepAffectingChildren;
-    //IDAOPI - Average rank
     private double incDepAffectingOldPeople;
     private LocalDate date;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "ladCode", insertable = false, updatable = false)
+    private GeoLocation loc;
 
     public Deprivation(String ladCode, String district, double incDepAffectingChildren, double incDepAffectingOldPeople, LocalDate date) {
         this.ladCode = ladCode;
