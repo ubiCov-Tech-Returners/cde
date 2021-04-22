@@ -17,4 +17,8 @@ public interface VaccinationRepository extends JpaRepository<Vaccination, Long> 
     @Query(value = "SELECT * FROM vaccination v WHERE v.district = ?1 AND v.date = ?2", nativeQuery = true)
     Vaccination findVaccinationByDistrictAndDate(String district, String date);
 
+    @Query(value = "SELECT * FROM vaccination v WHERE v.district = ?1", nativeQuery = true)
+    Vaccination findVaccinationByDistrict(String district);
+
+
 }

@@ -26,6 +26,9 @@ public class VaccinationService {
     public Vaccination getVaccinationByDistrictAndDate(String district, String date) {
         return vaccinationRepository.findVaccinationByDistrictAndDate(district, date);
     }
+    public Vaccination getVaccinationByDistrict(String district) {
+        return vaccinationRepository.findVaccinationByDistrict(district);
+    }
 
     public List<Vaccination> getAllVaccinations() {
         return vaccinationRepository.findAll();
