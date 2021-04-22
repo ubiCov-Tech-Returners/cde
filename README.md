@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+![Screenshot (24)](https://user-images.githubusercontent.com/78866876/115690035-8e01e000-a354-11eb-8336-2f7b9a5eaf87.png)
+
 # cde
 Covid Data and Exploration
 =======
