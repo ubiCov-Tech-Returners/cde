@@ -7,8 +7,6 @@ import java.util.Map;
 
 public class GeoJsonGenerator {
     private final String featureType = "FeatureCollection";
-    private final String markerSymbol = "rail-metro";
-    private final String url = "http://localhost:3000";  //TODO - change this
     private Map<String, String> plotColours = new HashMap<>();
 
     //Default No Args constructor
@@ -18,9 +16,9 @@ public class GeoJsonGenerator {
     // Sets the plotting colours of the datasets
     public void setUpColorPlots() {
         // Set map plotting colours
-        plotColours.put("covid", "red");
-        plotColours.put("vaccination", "yellow");
-        plotColours.put("furlough", "blue");
+        plotColours.put("covid", "rgb(255,0,0)");
+        plotColours.put("vaccination", "rgb(255,250,205)");
+        plotColours.put("furlough", "rgb(0,0,255)");
     }
 
     /**
@@ -33,8 +31,8 @@ public class GeoJsonGenerator {
         setUpColorPlots();  // Set MapInfo defaults
 
         MapInfo mapInfo = new MapInfo();
-        mapInfo.setType(params.get("featureType"));
-        mapInfo.setFeatures(getFeature(params));
+        mapInfo.setType(this.featureType);
+        mapInfo.setFeatures(getFeature(params)); // Sets GeoJson Features
 
         return mapInfo;
     }
@@ -60,11 +58,13 @@ public class GeoJsonGenerator {
 
     private Property getProperties(Map<String, String> params) {
         Property p = new Property();
-        p.setDescription(params.get("district"));
-        p.setMakerSymbol(this.markerSymbol);
-        p.setUrl(this.url);
-        p.setTitle("London Borough of " + params.get("district"));
-        p.setLines(getLines(params));
+        p.setBorough(params.get("borough"));
+        p.setDescription("London Borough of " + params.get("borough"));
+        p.setColour(plotColours.get(params.get("datatype")));
+        p.setValue(Double.parseDouble(params.get("value")));
+        p.setDataType(params.get("datatype"));
+
+
         return p;
     }
 
@@ -85,7 +85,7 @@ public class GeoJsonGenerator {
      */
     public Geometry getGeometry(Map<String, String> params) {
         Geometry geometry = new Geometry();
-        geometry.setType(params.get("geoType"));
+//        geometry.setType(params.get("geoType"));
         geometry.setCoordinates(getCoordinates(params));
 
         return geometry;

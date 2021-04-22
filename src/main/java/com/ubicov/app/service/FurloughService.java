@@ -17,6 +17,7 @@ import java.util.Map;
 @Service
 public class FurloughService {
 
+    private final String dataType = "furlough";
     private FurloughRepository furloughRepository;
 
     // Generates data in GeoJson
@@ -59,13 +60,12 @@ public class FurloughService {
      */
     private Map<String, String> getMapParams(Furlough furlough) {
         Map<String, String> params = new HashMap<>();
-        params.put("district", furlough.getDistrict());
-        params.put("featureType", "FeatureCollection");
-        params.put("dataset", "furlough");
-        params.put("geoType", "Point");
+        params.put("borough", furlough.getDistrict());
+        params.put("datatype", this.dataType); // Hard coded for each dataset type
         params.put("longitude", furlough.getLoc().getLongitude());
         params.put("latitude", furlough.getLoc().getLatitude());
         params.put("feature", "feature");
+        params.put("value", String.valueOf(furlough.getTotal_furloughed()));
 
         return params;
     }

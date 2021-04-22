@@ -9,6 +9,7 @@ package com.ubicov.app.controller;
 
 import com.ubicov.app.domain.Vaccination;
 import com.ubicov.app.service.VaccinationService;
+import com.ubicov.app.util.geojson.MapInfo;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,4 +36,8 @@ public class VaccinationController {
         return vaccinationService.getAllVaccinations();
     }
 
+    @GetMapping("/mapinfo/vaccination/{district}/{date}")
+    private MapInfo getVaccinationMapinfoByDistrict(@PathVariable String district, @PathVariable String date) {
+        return vaccinationService.getFurloughMapinfoByDistrict(district, date);
+    }
 }

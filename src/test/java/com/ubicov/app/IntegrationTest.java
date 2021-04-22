@@ -65,12 +65,10 @@ public class IntegrationTest {
         furloughList.add(new Furlough("E09000002", "Barking and Dagenham", LocalDate.parse("2021-01-31"), 8400, 8400, 16800));
         furloughList.add(new Furlough("E09000003", "Barnet", LocalDate.parse("2021-01-31"), 17000, 16000, 33000));
 
-        List<String> coordinates = new ArrayList<>(Arrays.asList("-76.9750541388", "38.8410857803"));
-//        Geometry g1 = new Geometry("Point", coordinates, "E09000001");
-        Geometry g1 = new Geometry("Point", coordinates);
+        List<String> coordinates = new ArrayList<>(Arrays.asList("-0.30174587349631565", "51.552182823098406"));
+        Geometry g1 = new Geometry(coordinates);
 
-        List<String> lines = new ArrayList<>();
-        Property p1 = new Property("Southern Ave", "rail-metro", "Southern Ave", "url", lines, "address1");
+        Property p1 = new Property("Brent", "London Borough of Brent", 14800, "furlough", "rgb(200,55,207)");
 
         Feature f1 = new Feature(g1, "Feature", p1);
         Feature f2 = new Feature(g1, "Feature", p1);
@@ -118,10 +116,20 @@ public class IntegrationTest {
         // arrange
 
         //act
-        ResponseEntity<MapInfo> response = restTemplate.getForEntity("/mapinfo/furlough/City of London", MapInfo.class);
+        ResponseEntity<MapInfo> response = restTemplate.getForEntity("/mapinfo/furlough/Brent/", MapInfo.class);
         //assert
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getBody().getType()).isEqualTo("FeatureCollection");
 
-        //TODO - tested with postman.  Need to add some assertions
+        //Test Property sub-class
+        assertThat(response.getBody().getFeatures().get(0).getProperties().getBorough()).isEqualTo("Brent");
+        assertThat(response.getBody().getFeatures().get(0).getProperties().getDescription()).isEqualTo("London Borough of Brent");
+        assertThat(response.getBody().getFeatures().get(0).getProperties().getValue()).isEqualTo(14800.0);
+        assertThat(response.getBody().getFeatures().get(0).getProperties().getDataType()).isEqualTo("furlough");
+        assertThat(response.getBody().getFeatures().get(0).getProperties().getColour()).isEqualTo("rgb(0,0,255)");
+
+        //Test Geometry sub-class
+        assertThat(response.getBody().getFeatures().get(0).getGeometry().getCoordinates().get(0)).isEqualTo("-0.30174587349631565");  //long
+        assertThat(response.getBody().getFeatures().get(0).getGeometry().getCoordinates().get(1)).isEqualTo("51.552182823098406");  //lat
     }
 }
