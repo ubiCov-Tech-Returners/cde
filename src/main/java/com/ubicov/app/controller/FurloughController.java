@@ -39,4 +39,8 @@ public class FurloughController {
         return furloughService.getFurloughMapinfoByDistrict(district);
     }
 
+    @GetMapping("/mapinfo/furlough/")
+    private MapInfo getAllFurloughMapinfo() {
+        return furloughService.getAllFurloughMapinfo();
+    }
 }

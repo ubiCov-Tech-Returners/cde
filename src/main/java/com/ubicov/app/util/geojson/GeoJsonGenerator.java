@@ -24,6 +24,23 @@ public class GeoJsonGenerator {
     /**
      * Builds and populates a MapInfo object
      *
+     * @param paramsOfMany
+     * @return
+     */
+    public MapInfo getAllMapInfo(List<Map<String, String>> paramsOfMany) {
+        setUpColorPlots();  // Set MapInfo defaults
+
+        MapInfo mapInfo = new MapInfo();
+        mapInfo.setType(this.featureType);
+        mapInfo.setFeatures(getFeatures(paramsOfMany)); // Sets GeoJson Features
+
+        return mapInfo;
+    }
+
+
+    /**
+     * Builds and populates a MapInfo object
+     *
      * @param params
      * @return
      */
@@ -36,7 +53,6 @@ public class GeoJsonGenerator {
 
         return mapInfo;
     }
-
     /**
      * Sets the feature element
      *
@@ -56,6 +72,26 @@ public class GeoJsonGenerator {
         return features;
     }
 
+    /**
+     * Sets the feature element of many
+     *
+     * @param paramsOfMany
+     * @return
+     */
+    private List<Feature> getFeatures(List<Map<String, String>> paramsOfMany) {
+        List<Feature> features = new ArrayList<>();
+        for(Map<String, String> params: paramsOfMany)
+        {
+            Feature f = new Feature();
+            f.setType(params.get("Feature"));
+            f.setProperties(getProperties(params));
+            f.setGeometry(getGeometry(params));
+            features.add(f);
+        }
+
+
+        return features;
+    }
     private Property getProperties(Map<String, String> params) {
         Property p = new Property();
         p.setBorough(params.get("borough"));
