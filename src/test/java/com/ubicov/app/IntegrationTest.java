@@ -65,8 +65,8 @@ public class IntegrationTest {
         furloughList.add(new Furlough("E09000002", "Barking and Dagenham", LocalDate.parse("2021-01-31"), 8400, 8400, 16800));
         furloughList.add(new Furlough("E09000003", "Barnet", LocalDate.parse("2021-01-31"), 17000, 16000, 33000));
 
-        List<String> coordinates = new ArrayList<>(Arrays.asList("-0.30174587349631565", "51.552182823098406"));
-        Geometry g1 = new Geometry(coordinates);
+        List<Double> coordinates = new ArrayList<>(Arrays.asList(-0.30174587349631565, 51.552182823098406));
+        Geometry g1 = new Geometry("Point",coordinates);
 
         Property p1 = new Property("Brent", "London Borough of Brent", 14800, "furlough", "rgb(200,55,207)");
 

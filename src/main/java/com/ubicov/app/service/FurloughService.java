@@ -64,7 +64,8 @@ public class FurloughService {
         params.put("datatype", this.dataType); // Hard coded for each dataset type
         params.put("longitude", furlough.getLoc().getLongitude());
         params.put("latitude", furlough.getLoc().getLatitude());
-        params.put("feature", "feature");
+        params.put("Feature", "Feature");
+        params.put("Point", "Point");
         params.put("value", String.valueOf(furlough.getTotal_furloughed()));
 
         return params;

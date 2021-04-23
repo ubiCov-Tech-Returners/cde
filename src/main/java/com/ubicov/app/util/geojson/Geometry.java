@@ -18,10 +18,12 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode
 public class Geometry {
-    List<String> coordinates;
+    List<Double> coordinates;
+    String type;
 //    String ladCode;
 
-    public Geometry(List<String> coordinates) {
+    public Geometry(String type,List<Double> coordinates) {
         this.coordinates = coordinates;
+        this.type = type;
     }
 }

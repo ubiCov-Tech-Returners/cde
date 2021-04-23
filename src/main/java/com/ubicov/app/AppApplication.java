@@ -33,40 +33,12 @@ public class AppApplication {
         return String.format("Hello %s!", name);
     }
 
-
-    /*@GetMapping("/suppliers")
-    public List supplier() {
-        List lst = new ArrayList<>();
-        lst.add(new Supplier(1L, "name1", "pic1"));
-        lst.add(new Supplier(2L, "name2", "pic2"));
-        lst.add(new Supplier(3L, "name3", "pic3"));
-
-        return lst;
-    }
-
-    @Entity @Getter
-    @Setter @NoArgsConstructor
-    @ToString @EqualsAndHashCode
-    public class Supplier {
-        @Id
-        private long supplierId;
-        private String name;
-        private String logo;
-
-        public Supplier(long suppId, String name, String logo){
-            this.name = name;
-            this.supplierId = suppId;
-            this.logo = logo;
-        }
-    }*/
-
-
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://localhost:8080");
+                registry.addMapping("/**").allowedOrigins("http://localhost:3000");
 
             }
         };

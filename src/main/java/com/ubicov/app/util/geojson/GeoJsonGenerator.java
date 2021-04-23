@@ -47,9 +47,9 @@ public class GeoJsonGenerator {
         Feature f = new Feature();
         List<Feature> features = new ArrayList<>();
 
-        f.setGeometry(getGeometry(params));
-        f.setType(params.get("feature"));
+        f.setType(params.get("Feature"));
         f.setProperties(getProperties(params));
+        f.setGeometry(getGeometry(params));
 
         features.add(f);
 
@@ -85,7 +85,7 @@ public class GeoJsonGenerator {
      */
     public Geometry getGeometry(Map<String, String> params) {
         Geometry geometry = new Geometry();
-//        geometry.setType(params.get("geoType"));
+        geometry.setType(params.get("Point"));
         geometry.setCoordinates(getCoordinates(params));
 
         return geometry;
@@ -97,11 +97,11 @@ public class GeoJsonGenerator {
      * @param params
      * @return List<String>
      */
-    private List<String> getCoordinates(Map<String, String> params) {
-        List<String> coordinates = new ArrayList<>();
+    private List<Double> getCoordinates(Map<String, String> params) {
+        List<Double> coordinates = new ArrayList<>();
 
-        coordinates.add(params.get("longitude"));
-        coordinates.add(params.get("latitude"));
+        coordinates.add(Double.parseDouble(params.get("longitude")));
+        coordinates.add(Double.parseDouble(params.get("latitude")));
 
         return coordinates;
     }
