@@ -16,4 +16,6 @@ public interface FurloughRepository extends JpaRepository<Furlough, Long> {
 
     @Query(value = "SELECT * FROM furlough f WHERE f.district = ?1", nativeQuery = true)
     Furlough findByDistrict(String district);
+
+    
 }

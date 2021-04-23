@@ -8,7 +8,10 @@ package com.ubicov.app;
 import lombok.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -30,7 +33,8 @@ public class AppApplication {
         return String.format("Hello %s!", name);
     }
 
-    @GetMapping("/suppliers")
+
+    /*@GetMapping("/suppliers")
     public List supplier() {
         List lst = new ArrayList<>();
         lst.add(new Supplier(1L, "name1", "pic1"));
@@ -54,7 +58,18 @@ public class AppApplication {
             this.supplierId = suppId;
             this.logo = logo;
         }
-    }
+    }*/
 
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("http://localhost:8080");
+
+            }
+        };
+    }
 
 }
