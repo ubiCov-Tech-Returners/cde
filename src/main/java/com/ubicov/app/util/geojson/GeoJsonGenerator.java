@@ -16,7 +16,7 @@ public class GeoJsonGenerator {
     // Sets the plotting colours of the datasets
     public void setUpColorPlots() {
         // Set map plotting colours
-        plotColours.put("covid", "rgb(255,0,0)");
+        plotColours.put("covid_cases", "rgb(255,0,0)");
         plotColours.put("vaccination", "rgb(255,250,205)");
         plotColours.put("furlough", "rgb(0,0,255)");
     }

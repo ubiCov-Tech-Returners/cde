@@ -79,7 +79,6 @@ public class FurloughService {
         params.put("Feature", "Feature");
         params.put("Point", "Point");
         params.put("value", String.valueOf(furlough.getTotal_furloughed()));
-
         return params;
     }
 
@@ -92,15 +91,7 @@ public class FurloughService {
     private List<Map<String, String>> getMapParamsOfMany(List <Furlough> allFurlough) {
         List<Map<String, String>> paramsOfMany = new ArrayList<>();
         for (Furlough furlough: allFurlough){
-            Map<String, String> params = new HashMap<>();
-            params.put("borough", furlough.getDistrict());
-            params.put("datatype", this.dataType); // Hard coded for each dataset type
-            params.put("longitude", furlough.getLoc().getLongitude());
-            params.put("latitude", furlough.getLoc().getLatitude());
-            params.put("Feature", "Feature");
-            params.put("Point", "Point");
-            params.put("value", String.valueOf(furlough.getTotal_furloughed()));
-            paramsOfMany.add(params);
+            paramsOfMany.add(getMapParams(furlough));
         }
         return paramsOfMany;
     }
