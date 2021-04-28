@@ -40,8 +40,15 @@ public class VaccinationService {
      * @param district
      * @return Key value pairs
      */
-    public MapInfo getFurloughMapinfoByDistrict(String district, String date) {
+    public MapInfo getVaccinationMapinfoByDistrict(String district, String date) {
         Vaccination vaccination = vaccinationRepository.findVaccinationByDistrictAndDate(district, date);
+        GeoJsonGenerator generator = new GeoJsonGenerator();
+
+        return generator.getMapInfoByDistrict(getMapParams(vaccination));
+    }
+
+    public MapInfo getVaccinationMapinfoByDistrict(String district) {
+        Vaccination vaccination = vaccinationRepository.findVaccinationByDistrict(district);
         GeoJsonGenerator generator = new GeoJsonGenerator();
 
         return generator.getMapInfoByDistrict(getMapParams(vaccination));
