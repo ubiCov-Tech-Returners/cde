@@ -15,19 +15,12 @@ import java.util.List;
 @RestController
 public class QuestionsController {
 
-    ///questions/1
-
-    private VaccinationService vaccinationService;
-    private CovidDataService covidDataService;
-    private DeprivationService deprivationService;
-    private FurloughService furloughService;
+    private QuestionService questionService;
 
 
-    public QuestionsController(VaccinationService vaccinationService, CovidDataService covidDataService, DeprivationService deprivationService, FurloughService furloughService) {
-        this.vaccinationService = vaccinationService;
-        this.covidDataService = covidDataService;
-        this.deprivationService = deprivationService;
-        this.furloughService = furloughService;
+    public QuestionsController(QuestionService questionService) {
+        this.questionService = questionService;
+
     }
 
 /**
@@ -35,44 +28,11 @@ public class QuestionsController {
 */
     @GetMapping("/questions/{id}")
     public List<MapInfo> question1(@PathVariable int id ){
-    //Get list of covid
-    List<CovidData> covidList = new ArrayList<>();
-    //get list of Furlough
-    List<Furlough> furloughList = new ArrayList<>();
-    // Combo list<<
-    ArrayList<MapInfo> combo = new ArrayList<>();
-
-
-    //Add Data to furlough
-        furloughList = furloughService.getAllFurlough();
-    //Add Data to Covid
-        covidList = covidDataService.getAllCovid();
-
-
-    // Use GeoJsonTransformer o generate json
-
-    //iterate furlough list - calling geoJsonTrans
-        for(Furlough f: furloughList){
-            // ForEach record we get Mapinfo add to combo
-            combo.add(
-              furloughService. getFurloughMapinfoByDistrict(f.getDistrict()));
+        switch(id){
+            case 1: return questionService.getQuestion1();
+            //case 2: return questionService.getQuestion2();
         }
+        return  null;
 
-        for(CovidData c: covidList){
-            // ForEach record we get Mapinfo add to combo
-            combo.add(covidDataService.getCovidCasesMapinfoByDistrict(c.getDistrict()));
-        }
-
-    //iterate furlough list - calling geoJsonTrans
-    System.out.println("Size of combo is:  " + combo.size());
-
-
-        return combo;
     }
 }
-
-/**
-* remove all the logic from controoller and put into service
-* create selector if id = 1 then quetion1 service
-
-*/
