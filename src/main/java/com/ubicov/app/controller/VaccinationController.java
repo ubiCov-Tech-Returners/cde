@@ -41,6 +41,11 @@ public class VaccinationController {
 
     @GetMapping("/mapinfo/vaccination/{district}/{date}")
     private MapInfo getVaccinationMapinfoByDistrict(@PathVariable String district, @PathVariable String date) {
-        return vaccinationService.getFurloughMapinfoByDistrict(district, date);
+        return vaccinationService.getVaccinationMapinfoByDistrict(district, date);
+    }
+
+    @GetMapping("/mapinfo/vaccination/{district}/")
+    private MapInfo getVaccinationMapinfoByDistrict(@PathVariable String district) {
+        return vaccinationService.getVaccinationMapinfoByDistrict(district);
     }
 }

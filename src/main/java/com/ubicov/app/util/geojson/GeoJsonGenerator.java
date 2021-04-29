@@ -99,6 +99,7 @@ public class GeoJsonGenerator {
         p.setColour(plotColours.get(params.get("datatype")));
         p.setValue(Double.parseDouble(params.get("value")));
         p.setDataType(params.get("datatype"));
+        p.setPercentageOfTotal(Double.parseDouble(params.get("percentageOfTotal")));
 
 
         return p;

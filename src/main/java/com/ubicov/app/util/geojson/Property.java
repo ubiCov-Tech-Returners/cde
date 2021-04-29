@@ -22,12 +22,14 @@ public class Property {
     double value;
     String dataType;
     String colour;
+    double percentageOfTotal; //This is for the scatterchart
 
-    public Property(String borough, String description, double value, String dataType, String colour) {
+    public Property(String borough, String description, double value, String dataType, String colour,double percentageOfTotal) {
         this.borough = borough;
         this.description = description;
         this.value = value;
         this.dataType = dataType;
         this.colour = colour;
+        this.percentageOfTotal = percentageOfTotal;
     }
 }
