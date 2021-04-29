@@ -20,12 +20,14 @@ public class FurloughService {
 
     private final String dataType = "furlough";
     private FurloughRepository furloughRepository;
+    private double percentageOfTotal;
 
     // Generates data in GeoJson
     private GeoJsonGenerator geoJsonGenerator;
 
     public FurloughService(FurloughRepository furloughRepository) {
         this.furloughRepository = furloughRepository;
+        this.percentageOfTotal = setpercentageoftotal();
     }
 
     public Furlough getFurloughByDistrictAndDate(String district) {
@@ -49,7 +51,6 @@ public class FurloughService {
     public MapInfo getFurloughMapinfoByDistrict(String district) {
         Furlough furlough = furloughRepository.findByDistrict(district);
         GeoJsonGenerator generator = new GeoJsonGenerator();
-
         return generator.getMapInfoByDistrict(getMapParams(furlough));
     }
 
@@ -79,7 +80,7 @@ public class FurloughService {
         params.put("Feature", "Feature");
         params.put("Point", "Point");
         params.put("value", String.valueOf(furlough.getTotal_furloughed()));
-        params.put("percentageOfTotal", String.valueOf(getPercentageOfTotal(furlough)));
+        params.put("percentageOfTotal", String.valueOf(((furlough.getTotal_furloughed()/percentageOfTotal)*100)));
         return params;
     }
 
@@ -96,10 +97,21 @@ public class FurloughService {
         }
         return paramsOfMany;
     }
+    /**
+     * Gets the value of Percentage Total
+     *
+     * @param
+     * @return double
+     */
 
-    public double getPercentageOfTotal(Furlough allFurlough){
-        double percentageOfTotal = 0.0;
-        
-        return percentageOfTotal;
+    public double setpercentageoftotal(){
+
+        double result = furloughRepository.findAll()
+                                          .stream()
+                                          .mapToDouble(f->f.getTotal_furloughed())
+                                          .sum();
+
+
+       return result;
     }
 }
