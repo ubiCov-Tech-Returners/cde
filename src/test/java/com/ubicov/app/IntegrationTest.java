@@ -68,13 +68,13 @@ public class IntegrationTest {
         List<Double> coordinates = new ArrayList<>(Arrays.asList(-0.30174587349631565, 51.552182823098406));
         Geometry g1 = new Geometry("Point",coordinates);
 
-        Property p1 = new Property("Brent", "London Borough of Brent",14800,"furlough", "rgb(200,55,207)");
+        Property p1 = new Property("Brent", "London Borough of Brent",14800,"furlough", "rgb(200,55,207)", 0.2);
 
         Feature f1 = new Feature(g1, "Feature", p1);
         Feature f2 = new Feature(g1, "Feature", p1);
 
         features.add(f1);
-        features.add(f2);
+        features.add(f2); 
 
         MapInfo mInfo = new MapInfo("FeatureCollection", features);
 

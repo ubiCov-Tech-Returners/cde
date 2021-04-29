@@ -79,6 +79,7 @@ public class FurloughService {
         params.put("Feature", "Feature");
         params.put("Point", "Point");
         params.put("value", String.valueOf(furlough.getTotal_furloughed()));
+        params.put("percentageOfTotal", String.valueOf(getPercentageOfTotal(furlough)));
         return params;
     }
 
@@ -94,5 +95,11 @@ public class FurloughService {
             paramsOfMany.add(getMapParams(furlough));
         }
         return paramsOfMany;
+    }
+
+    public double getPercentageOfTotal(Furlough allFurlough){
+        double percentageOfTotal = 0.0;
+        
+        return percentageOfTotal;
     }
 }
