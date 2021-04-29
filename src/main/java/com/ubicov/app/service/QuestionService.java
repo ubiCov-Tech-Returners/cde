@@ -1,6 +1,7 @@
 package com.ubicov.app.service;
 
 import com.ubicov.app.domain.CovidData;
+import com.ubicov.app.domain.Deprivation;
 import com.ubicov.app.domain.Furlough;
 import com.ubicov.app.domain.Vaccination;
 import com.ubicov.app.util.geojson.MapInfo;
@@ -36,7 +37,7 @@ public class QuestionService {
      * Is vaccination uptake lesser in areas with lower income?
      * @return
      */
-    public List<MapInfo> getQuestion1(){
+    public List<MapInfo> getQuestionOne(){
 
 
         //Get list of covid
@@ -57,6 +58,40 @@ public class QuestionService {
 
         for(CovidData c: covidList){
             combo.add(covidDataService.getCovidCasesMapinfoByDistrict(c.getDistrict()));
+        }
+        System.out.println("Size is correct " + combo.size());
+        return combo;
+
+
+
+
+    }
+
+    /**
+     * This answer Question1
+     * Is vaccination uptake lesser in areas with lower income?
+     * @return
+     */
+    public List<MapInfo> getQuestion1(){
+
+
+        //Get list of deprivation
+        List<Deprivation> depList = new ArrayList<>();
+        //get list of vaccination
+        List<Vaccination> vaccinationList = new ArrayList<>();
+        // Combo list<<
+        ArrayList<MapInfo> combo = new ArrayList<>();
+
+        vaccinationList = vaccinationService.getAllVaccinations();
+        depList = deprivationService.getAllDeprivations();
+
+        for(Vaccination v: vaccinationList){
+            combo.add(
+                    vaccinationService.getVaccinationMapinfoByDistrict(v.getDistrict()));
+        }
+
+        for(Deprivation d: depList){
+            combo.add(deprivationService.getDeprivationMapinfoByDistrict(d.getDistrict()));
         }
         System.out.println("Size is correct " + combo.size());
         return combo;
