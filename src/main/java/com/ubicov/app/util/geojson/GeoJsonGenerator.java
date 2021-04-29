@@ -101,7 +101,6 @@ public class GeoJsonGenerator {
         p.setDataType(params.get("datatype"));
         p.setPercentageOfTotal(Double.parseDouble(params.get("percentageOfTotal")));
 
-
         return p;
     }
 

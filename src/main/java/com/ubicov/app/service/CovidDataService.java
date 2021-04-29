@@ -28,9 +28,13 @@ public class CovidDataService {
     // Generates data in GeoJson
     private GeoJsonGenerator geoJsonGenerator;
 
+    private double percentageOfTotal;
+
 
     public CovidDataService(CovidDataRepository covidDataRepository) {
+
         this.covidDataRepository = covidDataRepository;
+        this.percentageOfTotal = setPercentageoftotal();
     }
 
     public CovidData getCovidDataByDistrict(String district) {
@@ -80,6 +84,7 @@ public class CovidDataService {
         params.put("Feature", "Feature");
         params.put("Point", "Point");
         params.put("value", String.valueOf(covidData.getNewCases()));
+        params.put("percentageOfTotal", String.valueOf(((covidData.getNewCases()/percentageOfTotal)*100)));
         return params;
     }
 
@@ -95,5 +100,16 @@ public class CovidDataService {
             paramsOfMany.add(getMapParams(covidCase));
         }
         return paramsOfMany;
+    }
+
+    public double setPercentageoftotal(){
+
+        double result = covidDataRepository.findAll()
+                .stream()
+                .mapToDouble(c->c.getNewCases())
+                .sum();
+
+
+        return result;
     }
 }

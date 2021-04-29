@@ -27,7 +27,7 @@ public class FurloughService {
 
     public FurloughService(FurloughRepository furloughRepository) {
         this.furloughRepository = furloughRepository;
-        this.percentageOfTotal = setpercentageoftotal();
+        this.percentageOfTotal = setPercentageoftotal();
     }
 
     public Furlough getFurloughByDistrictAndDate(String district) {
@@ -104,7 +104,7 @@ public class FurloughService {
      * @return double
      */
 
-    public double setpercentageoftotal(){
+    public double setPercentageoftotal(){
 
         double result = furloughRepository.findAll()
                                           .stream()
