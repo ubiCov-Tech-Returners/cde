@@ -19,7 +19,7 @@ public class GeoJsonGenerator {
         plotColours.put("covid_cases", "rgb(255,0,0)");//red
         plotColours.put("vaccination", "rgb(49,163,84)");//green
         plotColours.put("furlough", "rgb(0,0,255)");//blue
-        plotColours.put("deprivation", "rgb(254,178,76)");//orange
+        plotColours.put("deprivation", "rgb(197,27,138)");//pink
 
     }
 
