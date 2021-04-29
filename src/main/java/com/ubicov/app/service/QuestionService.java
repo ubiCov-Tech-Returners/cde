@@ -37,7 +37,7 @@ public class QuestionService {
      * @return
      */
     public List<MapInfo> getQuestion1(){
-        /*
+
 
         //Get list of covid
         List<CovidData> covidList = new ArrayList<>();
@@ -60,8 +60,8 @@ public class QuestionService {
         }
         System.out.println("Size is correct " + combo.size());
         return combo;
-        */
-        return null;
+
+
 
 
     }

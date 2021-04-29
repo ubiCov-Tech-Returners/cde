@@ -18,9 +18,13 @@ import java.util.Map;
 public class VaccinationService {
 
     private VaccinationRepository vaccinationRepository;
+    private String dataType = "vaccination";
+    private double percentageOfTotal = 0.0;
 
     public VaccinationService(VaccinationRepository vaccinationRepository) {
         this.vaccinationRepository = vaccinationRepository;
+        this.percentageOfTotal = setPercentageoftotal();
+        
     }
 
     public Vaccination getVaccinationByDistrictAndDate(String district, String date) {
@@ -62,14 +66,31 @@ public class VaccinationService {
      */
     private Map<String, String> getMapParams(Vaccination vaccination) {
         Map<String, String> params = new HashMap<>();
-        params.put("district", vaccination.getDistrict());
-        params.put("featureType", "FeatureCollection");
-        params.put("dataset", "vaccination");
-        params.put("geoType", "Point");
+        params.put("borough", vaccination.getDistrict());
+        params.put("datatype", this.dataType); // Hard coded for each dataset type
         params.put("longitude", vaccination.getLoc().getLongitude());
         params.put("latitude", vaccination.getLoc().getLatitude());
-        params.put("feature", "feature");
+        params.put("Feature", "Feature");
+        params.put("Point", "Point");
+        params.put("value", String.valueOf(getSumAllVaccinations(vaccination)));
+        params.put("percentageOfTotal", String.valueOf(((getSumAllVaccinations(vaccination)/percentageOfTotal)*100)));
 
         return params;
+    }
+
+    public double setPercentageoftotal(){
+
+        double result = vaccinationRepository.findAll()
+                .stream()
+                .mapToDouble(f->getSumAllVaccinations(f))
+                .sum();
+
+
+        return result;
+    }
+    private double getSumAllVaccinations(Vaccination v){
+        double result = 0;
+        result = v.getAgeUnder50() + v.getAge50To54() + v.getAge55To59() + v.getAge60To64() + v.getAge65To69() + v.getAge70To74() + v.getAgeOver80();
+        return result;
     }
 }
